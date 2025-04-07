@@ -1,3 +1,39 @@
+<?php
+    session_start();
+    require 'connection.php';
+
+    $user_id = $_SESSION['user_id'] ?? 1;
+
+    $sql = "SELECT 
+                c.id as cart_id,
+                p.id as product_id,
+                p.name,
+                p.price,
+                p.image_url,
+                c.quantity
+            FROM cart c
+            JOIN products p ON c.product_id = p.id
+            WHERE c.user_id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $cartItems = [];
+    $subtotal = 0;
+
+    while ($row = $result->fetch_assoc()) {
+        $row['total'] = $row['price'] * $row['quantity'];
+        $subtotal += $row['total'];
+        $cartItems[] = $row;
+    }
+
+    $shippingFee = 100;
+    $total = $subtotal + $shippingFee;
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +108,36 @@
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200" id="cartItemsTable">
-                                        <!-- Cart items will be inserted here by JavaScript -->
+                                        <?php if (empty($cartItems)): ?>
+                                            <script>
+                                                document.getElementById("emptyCart").style.display = "block";
+                                                document.getElementById("cartWithItems").style.display = "none";
+                                            </script>
+                                        <?php else: ?>
+                                            <?php foreach ($cartItems as $item): ?>
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap flex items-center">
+                                                        <img src="<?= htmlspecialchars($item['image_url']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" class="h-16 w-16 object-cover rounded">
+                                                        <span class="ml-4"><?= htmlspecialchars($item['name']) ?></span>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">₹<?= $item['price'] ?></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <form method="POST" action="update_cart.php">
+                                                            <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
+                                                            <input type="number" name="quantity" value="<?= $item['quantity'] ?>" min="1" class="border rounded px-2 py-1 w-16">
+                                                            <button type="submit" class="ml-2 text-blue-500">Update</button>
+                                                        </form>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">₹<?= $item['total'] ?></td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <form method="POST" action="remove_from_cart.php">
+                                                            <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
+                                                            <button type="submit" class="text-red-500">Remove</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -102,7 +167,7 @@
                                 <div class="border-t border-b border-gray-200 py-4 space-y-3">
                                     <div class="flex justify-between">
                                         <span class="text-gray-600">Subtotal</span>
-                                        <span class="font-medium" id="subtotal">₹0</span>
+                                        <span class="font-medium" id="subtotal">₹<?= number_format($subtotal, 2) ?></span>
                                     </div>
                                     <div class="flex justify-between">
                                         <span class="text-gray-600">Shipping</span>
@@ -112,7 +177,7 @@
                                 
                                 <div class="flex justify-between pt-4 pb-6">
                                     <span class="text-lg font-semibold">Total</span>
-                                    <span class="text-lg font-semibold" id="total">₹100</span>
+                                    <span class="text-lg font-semibold" id="total">₹<?= number_format($total, 2) ?></span>
                                 </div>
                                 
                                 <button class="w-full bg-mint-green text-white py-3 rounded-full font-medium hover:bg-sky-blue transition" id="checkoutBtn">
@@ -200,192 +265,142 @@
     </div>
 
     <script>
-        // Cart data
-        const cartItems = [
-            {
-                id: 1,
-                name: "Ski Jacket",
-                price: 1000,
-                image: "image/jacket5.png",
-                quantity: 1
-            },
-            {
-                id: 3,
-                name: "Snow Boots",
-                price: 1100,
-                image: "image/boots.png",
-                quantity: 2
-            }
-        ];
-        
-        const shippingFee = 100;
-        
-        // DOM elements
-        const emptyCartDiv = document.getElementById('emptyCart');
-        const cartWithItemsDiv = document.getElementById('cartWithItems');
-        const cartItemsTable = document.getElementById('cartItemsTable');
-        const subtotalSpan = document.getElementById('subtotal');
-        const totalSpan = document.getElementById('total');
-        const shippingFeeSpan = document.getElementById('shippingFee');
-        const updateCartBtn = document.getElementById('updateCart');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        const applyPromoBtn = document.getElementById('applyPromo');
-        const promoCodeInput = document.getElementById('promoCode');
-        const subscribeBtn = document.getElementById('subscribeBtn');
-        const newsletterEmail = document.getElementById('newsletterEmail');
-        
-        // Set page title
-        document.title = "Winter Sport - Shopping Cart";
-        
-        // Render cart items
-        function renderCart() {
-            if (cartItems.length === 0) {
-                emptyCartDiv.style.display = 'block';
-                cartWithItemsDiv.style.display = 'none';
-                return;
-            }
-            
-            emptyCartDiv.style.display = 'none';
-            cartWithItemsDiv.style.display = 'block';
-            
-            // Clear existing items
-            cartItemsTable.innerHTML = '';
-            
-            // Calculate subtotal
-            let subtotal = 0;
-            
-            // Add each item to the table
-            cartItems.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 h-16 w-16">
-                                <img src="${item.image}" alt="${item.name}" class="h-16 w-16 object-cover" />
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">${item.name}</div>
-                            </div>
+    const shippingFee = 100;
+
+    // DOM elements
+    const emptyCartDiv = document.getElementById('emptyCart');
+    const cartWithItemsDiv = document.getElementById('cartWithItems');
+    const cartItemsTable = document.getElementById('cartItemsTable');
+    const subtotalSpan = document.getElementById('subtotal');
+    const totalSpan = document.getElementById('total');
+    const updateCartBtn = document.getElementById('updateCart');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const applyPromoBtn = document.getElementById('applyPromo');
+    const promoCodeInput = document.getElementById('promoCode');
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    const newsletterEmail = document.getElementById('newsletterEmail');
+
+    document.title = "Winter Sport - Shopping Cart";
+
+    // Render cart items
+    function renderCart() {
+        if (cartItems.length === 0) {
+            emptyCartDiv.style.display = 'block';
+            cartWithItemsDiv.style.display = 'none';
+            return;
+        }
+
+        emptyCartDiv.style.display = 'none';
+        cartWithItemsDiv.style.display = 'block';
+        cartItemsTable.innerHTML = '';
+
+        let subtotal = 0;
+
+        cartItems.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 h-16 w-16">
+                            <img src="${item.image}" alt="${item.name}" class="h-16 w-16 object-cover" />
                         </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">₹${item.price}</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center border border-gray-200 rounded">
-                            <button 
-                                class="px-3 py-1 bg-gray-100 decrease-btn"
-                                data-id="${item.id}"
-                            >
-                                -
-                            </button>
-                            <span class="px-4 py-1">${item.quantity}</span>
-                            <button 
-                                class="px-3 py-1 bg-gray-100 increase-btn"
-                                data-id="${item.id}"
-                            >
-                                +
-                            </button>
+                        <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-900">${item.name}</div>
                         </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900 font-medium">₹${itemTotal}</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right">
-                        <button 
-                            class="text-red-500 hover:text-red-700 remove-btn"
-                            data-id="${item.id}"
-                        >
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                cartItemsTable.appendChild(row);
-            });
-            
-            // Update totals
-            subtotalSpan.textContent = `₹${subtotal}`;
-            shippingFeeSpan.textContent = `₹${shippingFee}`;
-            totalSpan.textContent = `₹${subtotal + shippingFee}`;
-            
-            // Add event listeners to buttons
-            document.querySelectorAll('.decrease-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    updateQuantity(id, -1);
-                });
-            });
-            
-            document.querySelectorAll('.increase-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    updateQuantity(id, 1);
-                });
-            });
-            
-            document.querySelectorAll('.remove-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    removeItem(id);
-                });
-            });
-        }
-        
-        // Update item quantity
-        function updateQuantity(id, change) {
-            const itemIndex = cartItems.findIndex(item => item.id === id);
-            if (itemIndex === -1) return;
-            
-            const newQuantity = cartItems[itemIndex].quantity + change;
-            if (newQuantity < 1) return;
-            
-            cartItems[itemIndex].quantity = newQuantity;
-            renderCart();
-        }
-        
-        // Remove item from cart
-        function removeItem(id) {
-            const itemIndex = cartItems.findIndex(item => item.id === id);
-            if (itemIndex === -1) return;
-            
-            cartItems.splice(itemIndex, 1);
-            renderCart();
-        }
-        
-        // Event listeners
-        updateCartBtn.addEventListener('click', () => {
-            alert('Cart updated!');
-            renderCart();
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">₹${item.price}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center border border-gray-200 rounded">
+                        <button class="px-3 py-1 bg-gray-100 decrease-btn" data-id="${item.id}">-</button>
+                        <span class="px-4 py-1">${item.quantity}</span>
+                        <button class="px-3 py-1 bg-gray-100 increase-btn" data-id="${item.id}">+</button>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900 font-medium">₹${itemTotal}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right">
+                    <button class="text-red-500 hover:text-red-700 remove-btn" data-id="${item.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            `;
+            cartItemsTable.appendChild(row);
         });
-        
-        checkoutBtn.addEventListener('click', () => {
-            alert('Proceeding to checkout!');
+
+        const total = subtotal + shippingFee;
+        subtotalSpan.textContent = `₹${subtotal}`;
+        totalSpan.textContent = `₹${total}`;
+        document.getElementById('shippingFee').textContent = `₹${shippingFee}`;
+
+        // Add button listeners
+        document.querySelectorAll('.decrease-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                updateQuantity(parseInt(btn.dataset.id), -1);
+            });
         });
-        
-        applyPromoBtn.addEventListener('click', () => {
-            const promoCode = promoCodeInput.value.trim();
-            if (promoCode) {
-                alert(`Promo code "${promoCode}" applied! (Note: This is just a demo)`);
-            } else {
-                alert('Please enter a promo code');
-            }
+
+        document.querySelectorAll('.increase-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                updateQuantity(parseInt(btn.dataset.id), 1);
+            });
         });
-        
-        subscribeBtn.addEventListener('click', () => {
-            const email = newsletterEmail.value.trim();
-            if (email) {
-                alert(`Thank you for subscribing with ${email}!`);
-                newsletterEmail.value = '';
-            } else {
-                alert('Please enter your email address');
-            }
+
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                removeItem(parseInt(btn.dataset.id));
+            });
         });
-        
-        // Initial render
+    }
+
+    function updateQuantity(id, change) {
+        const item = cartItems.find(item => item.id === id);
+        if (!item) return;
+
+        const newQty = item.quantity + change;
+        if (newQty < 1) return;
+
+        item.quantity = newQty;
         renderCart();
-    </script>
+    }
+
+    function removeItem(id) {
+        const index = cartItems.findIndex(item => item.id === id);
+        if (index !== -1) {
+            cartItems.splice(index, 1);
+            renderCart();
+        }
+    }
+
+    // Event listeners
+    updateCartBtn.addEventListener('click', () => {
+        alert('Cart updated!');
+        renderCart();
+    });
+
+    checkoutBtn.addEventListener('click', () => {
+        alert('Proceeding to checkout!');
+    });
+
+    applyPromoBtn.addEventListener('click', () => {
+        const promo = promoCodeInput.value.trim();
+        promo ? alert(`Promo code "${promo}" applied! (Demo only)`) : alert('Please enter a promo code');
+    });
+
+    subscribeBtn.addEventListener('click', () => {
+        const email = newsletterEmail.value.trim();
+        email ? (alert(`Thanks for subscribing with ${email}!`), newsletterEmail.value = '') : alert('Enter your email address');
+    });
+
+    // Initial render
+    renderCart();
+</script>
+
 </body>
 </html>

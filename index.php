@@ -36,7 +36,9 @@ include 'connection.php';
 
             <div class="icons">
                 <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
+                <a href="cart.php" style="text-decoration: none; color: black;">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
                 <i class="fa-solid fa-user"></i>
             </div>
         

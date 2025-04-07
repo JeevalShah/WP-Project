@@ -3,7 +3,7 @@
 
     $cart_id = $_POST['cart_id'];
 
-    $stmt = $conn->prepare("INSERT INTO cart()");
+    $stmt = $conn->prepare("DELETE FROM cart WHERE id = ?");
     $stmt->bind_param("i", $cart_id);
     $stmt->execute();
 
