@@ -4,8 +4,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'])) {
         $cartId = $_POST['cart_id'];
-
-        $userId = $_SESSION['user_id'] ?? null;
+        $userId = $_SESSION['user_id'] ?? null;   
 
         if ($userId) {
             $stmt = $conn->prepare("DELETE FROM cart WHERE id = ? AND user_id = ?");
@@ -22,6 +21,6 @@
         $stmt->close();
         $conn->close();
     } else {
-        echo "Invalid request.";
+        echo "<script>alert('Cart ID: $cartId | User ID: $userId');</script>";
     }
 ?>

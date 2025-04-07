@@ -282,44 +282,6 @@
 
         let subtotal = 0;
 
-        cartItems.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            subtotal += itemTotal;
-
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0 h-16 w-16">
-                            <img src="${item.image}" alt="${item.name}" class="h-16 w-16 object-cover" />
-                        </div>
-                        <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">${item.name}</div>
-                        </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">₹${item.price}</div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center border border-gray-200 rounded">
-                        <button class="px-3 py-1 bg-gray-100 decrease-btn" data-id="${item.id}">-</button>
-                        <span class="px-4 py-1">${item.quantity}</span>
-                        <button class="px-3 py-1 bg-gray-100 increase-btn" data-id="${item.id}">+</button>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900 font-medium">₹${itemTotal}</div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-right">
-                    <button class="text-red-500 hover:text-red-700 remove-btn" data-id="${item.id}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            `;
-            cartItemsTable.appendChild(row);
-        });
-
         const total = subtotal + shippingFee;
         subtotalSpan.textContent = `₹${subtotal}`;
         totalSpan.textContent = `₹${total}`;
@@ -363,7 +325,6 @@
         }
     }
 
-    // Event listeners
     updateCartBtn.addEventListener('click', () => {
         alert('Cart updated!');
         renderCart();
@@ -383,7 +344,6 @@
         email ? (alert(`Thanks for subscribing with ${email}!`), newsletterEmail.value = '') : alert('Enter your email address');
     });
 
-    // Initial render
     renderCart();
 </script>
 
