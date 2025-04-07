@@ -1,12 +1,27 @@
 <?php
+    session_start();
     require 'connection.php';
 
-    $cart_id = $_POST['cart_id'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cart_id'])) {
+        $cartId = $_POST['cart_id'];
 
-    $stmt = $conn->prepare("DELETE FROM cart WHERE id = ?");
-    $stmt->bind_param("i", $cart_id);
-    $stmt->execute();
+        $userId = $_SESSION['user_id'] ?? null;
 
-    header("Location: cart.php");
-    exit;
+        if ($userId) {
+            $stmt = $conn->prepare("DELETE FROM cart WHERE id = ? AND user_id = ?");
+            $stmt->bind_param("ii", $cartId, $userId);
+        } 
+
+        if ($stmt->execute()) {
+            header("Location: cart.php");
+            exit;
+        } else {
+            echo "Error removing item.";
+        }
+
+        $stmt->close();
+        $conn->close();
+    } else {
+        echo "Invalid request.";
+    }
 ?>
