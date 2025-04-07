@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Sport - Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style/signup.css" type="text/css">
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50 flex flex-col">
+        <!-- Navigation -->
+        <header class="border-b border-gray-200 bg-white">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="/" class="text-3xl font-bold">
+                        <span class="text-mint-green">Winter</span> <span class="text-sky-blue">Sport</span>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/home" class="text-gray-800 hover:text-mint-green transition">Home</a>
+                    <a href="/products" class="text-gray-800 hover:text-mint-green transition">Products</a>
+                    <a href="/about" class="text-gray-800 hover:text-mint-green transition">About</a>
+                    <a href="/review" class="text-gray-800 hover:text-mint-green transition">Review</a>
+                    <a href="/services" class="text-gray-800 hover:text-mint-green transition">Services</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="/wishlist" class="text-gray-800 hover:text-mint-green">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="/cart" class="text-gray-800 hover:text-mint-green">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    <a href="/login" class="text-gray-800 hover:text-mint-green">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <!-- Signup Form (Styled to Match Login) -->
+        <div class="flex-grow flex items-center justify-center py-12 px-4">
+            <div class="max-w-md w-full space-y-8">
+                <div>
+                    <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">Create your account</h2>
+                    <p class="mt-2 text-center text-sm text-gray-600">
+                        Already have an account? <a href="./login.html" class="font-medium text-sky-blue hover:text-sky-blue" style="text-decoration: none;">Sign in</a>
+                    </p>
+                </div>
+                
+                <div class="bg-white py-8 px-6 shadow rounded-lg">
+                    <form class="space-y-6" id="signupForm" action="signup.php" method="post">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">
+                                Full name
+                            </label>
+                            <div class="mt-1">
+                                <input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    autocomplete="name"
+                                    required
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-mint-green focus:border-mint-green"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">
+                                Email address
+                            </label>
+                            <div class="mt-1">
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    autocomplete="email"
+                                    required
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-mint-green focus:border-mint-green"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">
+                                Password
+                            </label>
+                            <div class="mt-1">
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    required
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-mint-green focus:border-mint-green"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="confirm-password" class="block text-sm font-medium text-gray-700">
+                                Confirm password
+                            </label>
+                            <div class="mt-1">
+                                <input
+                                    id="confirm-password"
+                                    name="confirm-password"
+                                    type="password"
+                                    required
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-mint-green focus:border-mint-green"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input
+                                    id="agree-terms"
+                                    name="agree-terms"
+                                    type="checkbox"
+                                    required
+                                    class="h-4 w-4 text-mint-green focus:ring-mint-green border-gray-300 rounded"
+                                />
+                                <label for="agree-terms" class="ml-2 block text-sm text-gray-900">
+                                    I agree to the <a href="#" class="text-mint-green hover:text-sky-blue">Terms</a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-mint-green hover:bg-sky-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mint-green"
+                            >
+                                Create account
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="mt-6">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white text-gray-500">Or sign up with</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 grid grid-cols-3 gap-3">
+                            <div>
+                                <a
+                                    href="#"
+                                    class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                                >
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a
+                                    href="#"
+                                    class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                                >
+                                    <i class="fab fa-google"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a
+                                    href="#"
+                                    class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                                >
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer (Same as Login Page) -->
+        <footer class="bg-gray-100">
+            <div class="container mx-auto px-4 py-6 text-center">
+                <p class="text-gray-600">© 2025 Winter Sport. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
