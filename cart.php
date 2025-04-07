@@ -108,87 +108,85 @@
                         <a href="./men.php" class="px-6 py-3 bg-mint-green text-white rounded-full" style="text-decoration:none">Continue Shopping</a>
                     </div>
                 <?php else: ?>
-                    <form method="POST" action="">
-                        <div class="flex flex-col lg:flex-row gap-8">
-                            <!-- Cart Items -->
-                            <div class="lg:w-2/3">
-                                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                                    <table class="min-w-full divide-y divide-gray-200" align="center">
-                                        <thead>
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <!-- Cart Items -->
+                        <div class="lg:w-2/3">
+                            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                                <table class="min-w-full divide-y divide-gray-200" align="center">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody align="center">
+                                        <?php foreach ($cartItems as $index => $item): ?>
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Total</th>
-                                                <th></th>
+                                                <td class="px-6 py-4 flex items-center">
+                                                    <img src="<?= htmlspecialchars($item['image_url']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" class="h-16 w-16 rounded object-cover">
+                                                    <span class="ml-4"><?= htmlspecialchars($item['name']) ?></span>
+                                                </td>
+                                                <td>₹<?= $item['price'] ?></td>
+                                                <td>
+                                                    <input type="hidden" name="cart_ids[]" value="<?= $item['cart_id'] ?>">
+                                                    <input type="number" name="quantities[]" value="<?= $item['quantity'] ?>" min="1" class="border rounded px-2 py-1 w-16">
+                                                </td>
+                                                <td>₹<?= $item['total'] ?></td>
+                                                <td>
+                                                    <form method="POST" action="remove_from_cart.php">
+                                                        <input type="hidden" name="cart_id" id="cart_id" value="<?= $item['cart_id'] ?>">
+                                                        <button type="submit" class="text-red-500">Remove</button>
+                                                    </form>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody align="center">
-                                            <?php foreach ($cartItems as $index => $item): ?>
-                                                <tr>
-                                                    <td class="px-6 py-4 flex items-center">
-                                                        <img src="<?= htmlspecialchars($item['image_url']) ?>" alt="<?= htmlspecialchars($item['name']) ?>" class="h-16 w-16 rounded object-cover">
-                                                        <span class="ml-4"><?= htmlspecialchars($item['name']) ?></span>
-                                                    </td>
-                                                    <td>₹<?= $item['price'] ?></td>
-                                                    <td>
-                                                        <input type="hidden" name="cart_ids[]" value="<?= $item['cart_id'] ?>">
-                                                        <input type="number" name="quantities[]" value="<?= $item['quantity'] ?>" min="1" class="border rounded px-2 py-1 w-16">
-                                                    </td>
-                                                    <td>₹<?= $item['total'] ?></td>
-                                                    <td>
-                                                        <form method="POST" action="remove_from_cart.php">
-                                                            <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
-                                                            <button type="submit" class="text-red-500">Remove</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="mt-6 flex justify-between items-center">
-                                    <a href="./men.php" class="text-sky-blue font-medium"><i class="fas fa-arrow-left mr-2"></i>Continue Shopping</a>
-                                    <button type="submit" formaction="update_cart_bulk.php" class="px-6 py-2 bg-mint-green text-white rounded-full">Update Cart</button>
-                                </div>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <!-- Order Summary -->
-                            <div class="lg:w-1/3">
-                                <div class="bg-white rounded-lg shadow-sm p-6">
-                                    <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
-                                    <div class="border-t border-b py-4 space-y-2">
-                                        <div class="flex justify-between"><span>Subtotal</span><span>₹<?= number_format($subtotal, 2) ?></span></div>
-                                        <div class="flex justify-between"><span>Shipping</span><span>₹<?= number_format($shippingFee, 2) ?></span></div>
-                                        <?php if ($promoDiscount > 0): ?>
-                                            <div class="flex justify-between text-green-600"><span>Promo (<?= $promoCode ?>)</span><span>-₹<?= number_format($discountAmount, 2) ?></span></div>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="flex justify-between font-semibold text-lg pt-4">
-                                        <span>Total</span>
-                                        <span>₹<?= number_format($total, 2) ?></span>
-                                    </div>
+                            <div class="mt-6 flex justify-between items-center">
+                                <a href="./men.php" class="text-sky-blue font-medium"><i class="fas fa-arrow-left mr-2"></i>Continue Shopping</a>
+                                <button type="submit" formaction="update_cart_bulk.php" class="px-6 py-2 bg-mint-green text-white rounded-full">Update Cart</button>
+                            </div>
+                        </div>
 
-                                    <form id="checkoutForm" method="POST" action="checkout.php">
-                                        <input type="hidden" name="total" value="<?= $total ?>">
-                                        <button type="submit" class="w-full mt-4 bg-mint-green text-white py-3 rounded-full font-medium">
-                                            Proceed to Checkout
-                                        </button>
-                                    </form>
+                        <!-- Order Summary -->
+                        <div class="lg:w-1/3">
+                            <div class="bg-white rounded-lg shadow-sm p-6">
+                                <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+                                <div class="border-t border-b py-4 space-y-2">
+                                    <div class="flex justify-between"><span>Subtotal</span><span>₹<?= number_format($subtotal, 2) ?></span></div>
+                                    <div class="flex justify-between"><span>Shipping</span><span>₹<?= number_format($shippingFee, 2) ?></span></div>
+                                    <?php if ($promoDiscount > 0): ?>
+                                        <div class="flex justify-between text-green-600"><span>Promo (<?= $promoCode ?>)</span><span>-₹<?= number_format($discountAmount, 2) ?></span></div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="flex justify-between font-semibold text-lg pt-4">
+                                    <span>Total</span>
+                                    <span>₹<?= number_format($total, 2) ?></span>
+                                </div>
 
-                                    <!-- Promo Code Input -->
-                                    <div class="mt-6">
-                                        <h3 class="text-sm font-medium mb-2">Apply Promo Code</h3>
-                                        <div class="flex">
-                                            <input type="text" name="promo_code" placeholder="Enter your code" class="px-4 py-2 border border-gray-300 rounded-l-lg w-full">
-                                            <button type="submit" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-r-lg hover:bg-gray-300">Apply</button>
-                                        </div>
+                                <form id="checkoutForm" method="POST" action="checkout.php">
+                                    <input type="hidden" name="total" value="<?= $total ?>">
+                                    <button type="submit" class="w-full mt-4 bg-mint-green text-white py-3 rounded-full font-medium">
+                                        Proceed to Checkout
+                                    </button>
+                                </form>
+
+                                <!-- Promo Code Input -->
+                                <div class="mt-6">
+                                    <h3 class="text-sm font-medium mb-2">Apply Promo Code</h3>
+                                    <div class="flex">
+                                        <input type="text" name="promo_code" placeholder="Enter your code" class="px-4 py-2 border border-gray-300 rounded-l-lg w-full">
+                                        <button type="submit" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-r-lg hover:bg-gray-300">Apply</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>

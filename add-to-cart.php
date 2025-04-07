@@ -11,7 +11,6 @@
 
     $product_id = (int) $_GET['id'];
 
-    // Check if product exists in cart already
     $sql = "SELECT id, quantity FROM cart WHERE user_id = ? AND product_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ii", $user_id, $product_id);
