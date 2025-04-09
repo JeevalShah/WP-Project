@@ -15,9 +15,9 @@
         </div>
     
         <ul>
-          <li><a href="#Home">Home</a></li>
-          <li><a href="#Products">Products</a></li>
-          <li><a href="#About">About</a></li>
+          <li><a href="./index.php">Home</a></li>
+          <li><a href="./men.php">Products</a></li>
+          <li><a href="./aboutus.php">About</a></li>
           <li><a href="#Review">Review</a></li>
           <li><a href="#Services">Services</a></li>
         </ul>
@@ -95,7 +95,7 @@
       <h2>Still have questions?</h2>
       <p>Our customer service team is here to help. Reach out to us via email, phone, or visit one of our stores for personalized assistance.</p>
       <div class="support-buttons">
-        <a href="mailto:support@example.com" class="button email-btn">
+        <a href="mailto:wintersports@gmail.com" class="button email-btn">
             📧 Email Us
           </a>          
           <button class="button call-btn" onclick="alert('Calling support at +1234567890')">📞 Call Us</button>

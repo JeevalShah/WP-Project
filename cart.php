@@ -204,7 +204,7 @@
                     <div>
                         <h3 class="text-lg font-semibold mb-4">Get Help</h3>
                         <ul class="space-y-2">
-                            <li><a href="#" class="hover:text-mint-green transition">FAQ</a></li>
+                            <li><a href="./faq.php" class="hover:text-mint-green transition">FAQ</a></li>
                             <li><a href="#" class="hover:text-mint-green transition">Shipping</a></li>
                             <li><a href="#" class="hover:text-mint-green transition">Returns</a></li>
                         </ul>
@@ -213,9 +213,10 @@
                     <div>
                         <h3 class="text-lg font-semibold mb-4">Our Stores</h3>
                         <ul class="space-y-2">
-                            <li>Sri Lanka</li>
+                            <li>UK</li>
                             <li>USA</li>
                             <li>India</li>
+                            <li>Japan</li>
                         </ul>
                     </div>
 
@@ -246,100 +247,6 @@
         </footer>
     </div>
 
-    <script>
-    const shippingFee = 100;
-
-    const emptyCartDiv = document.getElementById('emptyCart');
-    const cartWithItemsDiv = document.getElementById('cartWithItems');
-    const cartItemsTable = document.getElementById('cartItemsTable');
-    const subtotalSpan = document.getElementById('subtotal');
-    const totalSpan = document.getElementById('total');
-    const updateCartBtn = document.getElementById('updateCart');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const applyPromoBtn = document.getElementById('applyPromo');
-    const promoCodeInput = document.getElementById('promoCode');
-    const subscribeBtn = document.getElementById('subscribeBtn');
-    const newsletterEmail = document.getElementById('newsletterEmail');
-
-    document.title = "Winter Sport - Shopping Cart";
-
-    function renderCart() {
-        if (cartItems.length === 0) {
-            emptyCartDiv.style.display = 'block';
-            cartWithItemsDiv.style.display = 'none';
-            return;
-        }
-
-        emptyCartDiv.style.display = 'none';
-        cartWithItemsDiv.style.display = 'block';
-        cartItemsTable.innerHTML = '';
-
-        let subtotal = 0;
-
-        const total = subtotal + shippingFee;
-        subtotalSpan.textContent = `₹${subtotal}`;
-        totalSpan.textContent = `₹${total}`;
-        document.getElementById('shippingFee').textContent = `₹${shippingFee}`;
-
-        document.querySelectorAll('.decrease-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                updateQuantity(parseInt(btn.dataset.id), -1);
-            });
-        });
-
-        document.querySelectorAll('.increase-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                updateQuantity(parseInt(btn.dataset.id), 1);
-            });
-        });
-
-        document.querySelectorAll('.remove-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                removeItem(parseInt(btn.dataset.id));
-            });
-        });
-    }
-
-    function updateQuantity(id, change) {
-        const item = cartItems.find(item => item.id === id);
-        if (!item) return;
-
-        const newQty = item.quantity + change;
-        if (newQty < 1) return;
-
-        item.quantity = newQty;
-        renderCart();
-    }
-
-    function removeItem(id) {
-        const index = cartItems.findIndex(item => item.id === id);
-        if (index !== -1) {
-            cartItems.splice(index, 1);
-            renderCart();
-        }
-    }
-
-    updateCartBtn.addEventListener('click', () => {
-        alert('Cart updated!');
-        renderCart();
-    });
-
-    checkoutBtn.addEventListener('click', () => {
-        alert('Proceeding to checkout!');
-    });
-
-    applyPromoBtn.addEventListener('click', () => {
-        const promo = promoCodeInput.value.trim();
-        promo ? alert(`Promo code "${promo}" applied! (Demo only)`) : alert('Please enter a promo code');
-    });
-
-    subscribeBtn.addEventListener('click', () => {
-        const email = newsletterEmail.value.trim();
-        email ? (alert(`Thanks for subscribing with ${email}!`), newsletterEmail.value = '') : alert('Enter your email address');
-    });
-
-    renderCart();
-</script>
 
 </body>
 </html>

@@ -175,7 +175,7 @@
 
             <div class="tag">
                 <h1>Get Help</h1>
-                <a href="#" class="center">FAQ</a>
+                <a href="./faq.php" class="center">FAQ</a>
                 <a href="#" class="center">Shipping</a>
                 <a href="#" class="center">Returns</a>
                 <a href="#" class="center">Payment Options</a>
@@ -183,7 +183,7 @@
 
             <div class="tag">
                 <h1>Our Stores</h1>
-                <a href="#" class="center">Sri Lanka</a>
+                <a href="#" class="center">UK</a>
                 <a href="#" class="center">USA</a>
                 <a href="#" class="center">India</a>
                 <a href="#" class="center">Japan</a>
