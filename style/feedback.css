@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    padding: 40px;
+    padding-top: 100px;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 10px 0;
+  }
+
+  nav .logo {
+    font-size: 28px;
+    color: #cdffd8;
+    cursor: pointer;
+  }
+
+  nav .logo span {
+    color: #94b9ff;
+  }
+
+  nav ul {
+    list-style: none;
+  }
+
+  nav ul li {
+    display: inline-block;
+    margin: 5px 15px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: black;
+    transition: 0.2s;
+  }
+
+  nav ul li a:hover {
+    color: #cdffd8;
+  }
+
+  nav .icons i {
+    margin: 0 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+  }
+
+  nav .icons i:hover {
+    color: #cdffd8;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .btn-back {
+    float: right;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    margin-top: -60px;
+  }
+
+  .heading {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+
+  .blue {
+    color: #94b9ff;
+  }
+
+  .green {
+    color: #cdffd8;
+  }
+
+  .feedback-section, .reviews-section {
+    margin-bottom: 50px;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+
+  .star-rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+    font-size: 24px;
+  }
+
+  .star-rating .star {
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+  }
+
+  .star-rating .star.selected,
+  .star-rating .star.hovered {
+    color: gold;
+  }
+
+  .submit-btn {
+    background-color: #a0f3c2;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .review-card {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .review-card .stars {
+    color: gold;
+    font-size: 18px;
+  }
+
+  .review-card .date {
+    font-size: 14px;
+    color: #888;
+    margin-left: 10px;
+  }
+
+  .review-card h4 {
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+
+  .text-center {
+    text-align: center;
+  }

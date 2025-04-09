@@ -18,7 +18,7 @@
           <li><a href="./index.php">Home</a></li>
           <li><a href="./men.php">Products</a></li>
           <li><a href="./aboutus.php">About</a></li>
-          <li><a href="#Review">Review</a></li>
+          <li><a href="./feedback.php">Review</a></li>
           <li><a href="./services.php">Services</a></li>
           <li><a href="./contactus.php">Contact</a></li>
         </ul>

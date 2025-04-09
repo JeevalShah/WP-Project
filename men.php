@@ -22,6 +22,62 @@
         .category-buttons .btn:hover {
             background-color: #555;
         }
+
+        /* Horizontal Filter & Sort Form */
+        form[method="POST"] {
+        background-color: #f3f1f1;
+        padding: 20px 30px;
+        margin: 30px auto;
+        width: fit-content;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+        font-size: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        }
+
+        /* Labels */
+        form[method="POST"] label {
+        font-weight: bold;
+        color: #1c0080;
+        margin-right: 5px;
+        }
+
+        /* Dropdown */
+        form[method="POST"] select {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        background-color: white;
+        cursor: pointer;
+        }
+
+        /* Radio buttons and their labels */
+        form[method="POST"] input[type="radio"] {
+        margin-left: 10px;
+        accent-color: #94b9ff;
+        cursor: pointer;
+        }
+
+        /* Submit Button */
+        form[method="POST"] .btn {
+        padding: 8px 16px;
+        background: linear-gradient(to right, #cdffd8, #94b9ff);
+        border: none;
+        color: white;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        }
+
+        form[method="POST"] .btn:hover {
+        background: linear-gradient(to left, #cdffd8, #94b9ff);
+        }
     </style>
     <link rel="icon" href="./image/logo.png" type="image/png">
 </head>
@@ -61,26 +117,26 @@
             <a href="accessories.php" class="btn">Accessories</a>
         </div>
         <h1>Men's collection</h1>
+        <center>
+            <!-- Sort -->
+            <form method="POST" style="text-align: center; margin: 20px 0;">
+                <label for="sort">Sort by:</label>
+                <select name="sort" id="sort">
+                    <option value="">Default</option>
+                    <option value="price_asc">Price: Low to High</option>
+                    <option value="price_desc">Price: High to Low</option>
+                    <option value="rating">Rating</option>
+                </select>
 
-        <!-- Sort -->
-        <form method="POST" style="text-align: center; margin: 20px 0;">
-            <label for="sort">Sort by:</label>
-            <select name="sort" id="sort">
-                <option value="">Default</option>
-                <option value="price_asc">Price: Low to High</option>
-                <option value="price_desc">Price: High to Low</option>
-                <option value="rating">Rating</option>
-            </select>
+                <!-- Price filter -->
+                <label style="margin-left: 20px;">Price:</label>
+                <input type="radio" name="price_range" value="0"> &lt; ₹500
+                <input type="radio" name="price_range" value="500"> ₹500 - ₹1000
+                <input type="radio" name="price_range" value="1000"> &gt; ₹1000
 
-            <!-- Price filter -->
-            <label style="margin-left: 20px;">Price:</label>
-            <input type="radio" name="price_range" value="0"> &lt; ₹500
-            <input type="radio" name="price_range" value="500"> ₹500 - ₹1000
-            <input type="radio" name="price_range" value="1000"> &gt; ₹1000
-
-            <button type="submit" class="btn" style="margin-left: 20px;">Apply</button>
-        </form>
-
+                <button type="submit" class="btn" style="margin-left: 20px;">Apply</button>
+            </form>
+        </center>
 
         <div class="box">
         <?php

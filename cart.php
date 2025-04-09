@@ -78,7 +78,7 @@
                     <a href="./index.php" class="text-gray-800 hover:text-mint-green transition">Home</a>
                     <a href="./men.php" class="text-gray-800 hover:text-mint-green transition">Products</a>
                     <a href="./aboutus.php" class="text-gray-800 hover:text-mint-green transition">About Us</a>
-                    <a href="/review" class="text-gray-800 hover:text-mint-green transition">Review</a>
+                    <a href="/feedback.php" class="text-gray-800 hover:text-mint-green transition">Review</a>
                     <a href="./services.php" class="text-gray-800 hover:text-mint-green transition">Services</a>
                     <li><a href="./contactus.php" class="text-gray-800 hover:text-mint-green transition">Contact</a></li>
                 </nav>

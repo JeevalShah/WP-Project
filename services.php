@@ -19,12 +19,12 @@
       <h1>Winter<span> Sport</span></h1>
     </div>
     <ul>
-      <li><a href="index.html#Home">Home</a></li>
-      <li><a href="product-page.html">Products</a></li>
-      <li><a href="index.html#About">About</a></li>
-      <li><a href="index.html#Review">Review</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="./contactus.php">Contact</a></li>
+        <li><a href="./index.php">Home</a></li>
+        <li><a href="./men.php">Products</a></li>
+        <li><a href="./aboutus.php">About Us</a></li>
+        <li><a href="./feedback.php">Review</a></li>
+        <li><a href="./services.php">Services</a></li>
+        <li><a href="./contactus.php">Contact</a></li>
     </ul>
     <div class="icons">
       <i class="fa-solid fa-heart"></i>
