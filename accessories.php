@@ -34,7 +34,7 @@
             <ul>
                 <li><a href="index.php#Home">Home</a></li>
                 <li><a href="men.php">Products</a></li>
-                <li><a href="index.php#About">About</a></li>
+                <li><a href="aboutus.php">About Us</a></li>
                 <li><a href="index.php#Review">Review</a></li>
                 <li><a href="index.php#Services">Services</a></li>
             </ul>

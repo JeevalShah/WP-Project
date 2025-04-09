@@ -16,9 +16,9 @@
             </div>
         
             <ul>
-                <li><a href="#Home">Home</a></li>
+                <li><a href="./index.php">Home</a></li>
                 <li><a href="men.php">Products</a></li>
-                <li><a href="#About">About</a></li>
+                <li><a href="./aboutus.php">About Us</a></li>
                 <li><a href="#Review">Review</a></li>
                 <li><a href="#Services">Services</a></li>
             </ul>

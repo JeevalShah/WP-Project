@@ -1,0 +1,64 @@
+.services-page {
+    padding: 120px 20px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .services-page h1 {
+    font-size: 50px;
+    background: linear-gradient(to right, #cdffd8, #94b9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 60px;
+  }
+  
+  .service-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  
+  .service-card {
+    flex: 1 1 calc(25% - 30px);
+    background: #f3f1f1;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .service-card i {
+    font-size: 40px;
+    color: #94b9ff;
+    margin-bottom: 20px;
+  }
+  
+  .service-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #1c0080;
+  }
+  
+  .service-card p {
+    font-size: 15px;
+    color: #444;
+  }
+  
+  @media (max-width: 992px) {
+    .service-card {
+      flex: 1 1 45%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .service-card {
+      flex: 1 1 100%;
+    }
+  }
+  
