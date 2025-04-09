@@ -65,7 +65,7 @@ include 'connection.php';
             </div>
 
             <div class="button">
-                <a href="#">SHOP NOW</a>
+                <a href="./men.php">SHOP NOW</a>
                 <i class="fa-solid fa-chevron-right"></i>
             </div>
         </div>
@@ -167,7 +167,7 @@ Join us in embracing the season, pushing limits, and making memories in the moun
 
         </div>
 
-        <a href="#" class="about_btn">Shop Now</a>
+        <a href="./men.php" class="about_btn">Shop Now</a>
 
         <script>
             function functio(small){
@@ -402,46 +402,14 @@ Join us in embracing the season, pushing limits, and making memories in the moun
      <!--Login Form-->
     
      <div class="login_form">
-        <div class="left">
-            <img src="image/snow2.png">
-        </div>
-
-        <div class="right">
-            <h1>Welcome Back!</h1>
-
-            <form action="#" method="post">
-                <p>User Name</p>
-                <div class="user">
-                    <i class="fa-solid fa-user"></i>
-                    <input type="text" name="user" placeholder="User Name" class="username">
-                </div>
-
-                <p class="passworg_tag">Password</p>
-                <div class="password">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="text" name="password" placeholder="Password">
-                </div>
-
-                <p class="forget">Forget Password ?</p>
-
-                <button type="submit">Login</button>
-                <div class="loging_icon">
-                    <a href="#"><img src="image/google.png"></a>
-                    <a href="#"><img src="image/facebook.png"></a>
-                    <a href="#"><img src="image/twitter.png"></a>
-                </div>
-
-            </form>
-
-        </div>
-
+            <img src="image/snow.jpg">
     </div>
 
 
 
     <!--Footer-->
     <footer>
-        <div class="footer_main">
+        <div class="footer_main" align="center">
             <div class="tag">
                 <h1>Contact</h1>
                 <a href="#"><i class="fa-solid fa-house"></i>123, Mumbai India</a>
@@ -466,7 +434,7 @@ Join us in embracing the season, pushing limits, and making memories in the moun
             </div>
 
             <div class="tag">
-                <h1>Follw Us</h1>
+                <h1>Follow Us</h1>
                 <div class="social_link">
                     <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-twitter"></i></a>

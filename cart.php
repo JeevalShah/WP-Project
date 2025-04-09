@@ -8,8 +8,7 @@
     $promoCode = '';
     $validPromoCodes = [
         'DISCOUNT10' => 0.10,
-        'SAVE20' => 0.20,
-        'FREESHIP' => 0.00
+        'SAVE20' => 0.20
     ];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['promo_code'])) {
@@ -167,12 +166,9 @@
                                         <span>₹<?= number_format($total, 2) ?></span>
                                     </div>
 
-                                    <form id="checkoutForm" method="POST" action="checkout.php">
-                                        <input type="hidden" name="total" value="<?= $total ?>">
-                                        <button type="submit" class="w-full mt-4 bg-mint-green text-white py-3 rounded-full font-medium">
-                                            Proceed to Checkout
-                                        </button>
-                                    </form>
+                                    <button type="submit" formaction="checkout.php" class="w-full mt-4 bg-mint-green text-white py-3 rounded-full font-medium" name="total" value="<?= $total ?>">
+                                        Proceed to Checkout
+                                    </button>
 
                                     <!-- Promo Code Input -->
                                     <div class="mt-6">
