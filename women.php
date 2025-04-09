@@ -25,7 +25,6 @@
     <link rel="icon" href="./image/logo.png" type="image/png">
 </head>
 <body>
-
     <!-- Navigation -->
     <section>
         <nav>
@@ -37,7 +36,7 @@
                 <li><a href="men.php">Products</a></li>
                 <li><a href="./aboutus.php">About Us</a></li>
                 <li><a href="index.php#Review">Review</a></li>
-                <li><a href="index.php#Services">Services</a></li>
+                <li><a href="./services.php">Services</a></li>
             </ul>
             <div class="icons">
                 <i class="fa-solid fa-heart"></i>
@@ -170,7 +169,7 @@
                 <h1>Contact</h1>
                 <a href="#"><i class="fa-solid fa-house"></i>123, Mumbai India</a>
                 <a href="#"><i class="fa-solid fa-phone"></i>+91 77777 77777</a>
-                <a href="#"><i class="fa-solid fa-envelope"></i>info@gmail.com</a>
+                <a href="#"><i class="fa-solid fa-envelope"></i>wintersports@gmail.com</a>
             </div>
 
             <div class="tag">

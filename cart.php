@@ -79,7 +79,7 @@
                     <a href="./men.php" class="text-gray-800 hover:text-mint-green transition">Products</a>
                     <a href="./aboutus.php" class="text-gray-800 hover:text-mint-green transition">About Us</a>
                     <a href="/review" class="text-gray-800 hover:text-mint-green transition">Review</a>
-                    <a href="/services" class="text-gray-800 hover:text-mint-green transition">Services</a>
+                    <a href="./services.php" class="text-gray-800 hover:text-mint-green transition">Services</a>
                 </nav>
                 
                 <div class="flex items-center space-x-4">

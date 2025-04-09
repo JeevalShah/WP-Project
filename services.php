@@ -23,7 +23,7 @@
       <li><a href="product-page.html">Products</a></li>
       <li><a href="index.html#About">About</a></li>
       <li><a href="index.html#Review">Review</a></li>
-      <li><a href="services.html">Services</a></li>
+      <li><a href="#">Services</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="icons">
@@ -70,21 +70,21 @@
 <footer>
   <div class="footer_main">
     <div class="tag">
-      <h1>Contact</h1>
-      <a href="#"><i class="fa-solid fa-house"></i>123/Colombo/Sri Lanka</a>
-      <a href="#"><i class="fa-solid fa-phone"></i>+94 12 345 6789</a>
-      <a href="#"><i class="fa-solid fa-envelope"></i>contact@gmail.com</a>
+        <h1>Contact</h1>
+        <a href="#"><i class="fa-solid fa-house"></i>123, Mumbai India</a>
+        <a href="#"><i class="fa-solid fa-phone"></i>+91 77777 77777</a>
+        <a href="#"><i class="fa-solid fa-envelope"></i>wintersports@gmail.com</a>
     </div>
     <div class="tag">
       <h1>Get Help</h1>
-      <a href="#" class="center">FAQ</a>
+      <a href="./faq.php" class="center">FAQ</a>
       <a href="#" class="center">Shipping</a>
       <a href="#" class="center">Returns</a>
       <a href="#" class="center">Payment Options</a>
     </div>
     <div class="tag">
       <h1>Our Stores</h1>
-      <a href="#" class="center">Sri Lanka</a>
+      <a href="#" class="center">UK</a>
       <a href="#" class="center">USA</a>
       <a href="#" class="center">India</a>
       <a href="#" class="center">Japan</a>

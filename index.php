@@ -21,7 +21,7 @@
                 <li><a href="men.php">Products</a></li>
                 <li><a href="./aboutus.php">About Us</a></li>
                 <li><a href="#Review">Review</a></li>
-                <li><a href="#Services">Services</a></li>
+                <li><a href="./services.php">Services</a></li>
             </ul>
 
             <div class="icons">
@@ -168,193 +168,64 @@ Join us in embracing the season, pushing limits, and making memories in the moun
         
     </div>
 
-     <!--Review-->
+<div class="review" id="Review">
+    <h1>Customer's <span>review</span></h1>
 
-     <div class="review" id="Review">
-        <h1>Customer's<span>review</span></h1>
-        
-        <div class="review_box">
-            <div class="review_card">
-                <div class="card_top">
-                    <div class="profile">
+    <?php
+        include "connection.php";
 
-                        <div class="profile_image">
-                            <img src="image/girl_dp1.jpg">
-                        </div>
+        $sql = "SELECT * FROM reviews";
+        $result = $conn->query($sql);
 
-                        <div class="name">
-                            <strong>Ranidi Lochana</strong>
+        $count = 0;
+        if ($result->num_rows > 0) {
+            echo '<div class="review_box">';
+            while ($row = $result->fetch_assoc()) {
+                if ($count > 0 && $count % 3 == 0) {
+                    echo '</div><div class="review_box">';
+                }
 
-                            <div class="like">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
+                echo '<div class="review_card">
+                        <div class="card_top">
+                            <div class="profile">
+                                <div class="profile_image">
+                                    <img src="' . $row['image_path'] . '">
+                                </div>
+                                <div class="name">
+                                    <strong>' . htmlspecialchars($row['name']) . '</strong>
+                                    <div class="like">';
+
+                $full_stars = floor($row['rating']);
+                $half_star = ($row['rating'] - $full_stars) >= 0.5;
+                for ($i = 0; $i < $full_stars; $i++) {
+                    echo '<i class="fa-solid fa-star"></i>';
+                }
+                if ($half_star) {
+                    echo '<i class="fa-solid fa-star-half-stroke"></i>';
+                    $i++;
+                }
+                while ($i < 5) {
+                    echo '<i class="fa-regular fa-star"></i>';
+                    $i++;
+                }
+
+                echo        '</div>
                             </div>
                         </div>
-
                     </div>
-                </div>
-                <div class="comment">
-                    <p>
-                        Absolutely love my new snowboard! The quality is top-notch, and the shipping was super fast. Customer service was also very helpful in choosing the right size. Will definitely be back for more!
-                    </p>
-                </div>
-            </div>   
-
-            <div class="review_card">
-                <div class="card_top">
-                    <div class="profile">
-
-                        <div class="profile_image">
-                            <img src="image/man_dp1.jpg">
-                        </div>
-
-                        <div class="name">
-                            <strong>Sayuru Tharanga</strong>
-
-                            <div class="like">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                        </div>
-
+                    <div class="comment">
+                        <p>' . htmlspecialchars($row['comment']) . '</p>
                     </div>
-                </div>
-                <div class="comment">
-                    <p>
-                        Decent quality, but the sizing was a bit off. Had to exchange my gloves for a bigger size. The return process was smooth, but I wish the size guide was more accurate
-                    </p>
-                </div>
-            </div>   
+                </div>';
 
-            <div class="review_card">
-                <div class="card_top">
-                    <div class="profile">
-
-                        <div class="profile_image">
-                            <img src="image/man_dp2.jpg">
-                        </div>
-
-                        <div class="name">
-                            <strong>Senuda Dilwan</strong>
-
-                            <div class="like">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="comment">
-                    <p>
-                        Not the best experience. My order was delayed, and when it arrived, the snowboard had a small scratch. Customer service was polite but took a while to respond.
-                    </p>
-                </div>
-            </div>   
-
-        </div>
-
-        <div class="review_box">
-            <div class="review_card">
-                <div class="card_top">
-                    <div class="profile">
-
-                        <div class="profile_image">
-                            <img src="image/gir_dp3.jpg">
-                        </div>
-
-                        <div class="name">
-                            <strong>Kaveesha Vidurangi</strong>
-
-                            <div class="like">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
-                                <i class="fa-regular fa-star"></i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="comment">
-                    <p>
-                        The gear is good, but the packaging was slightly damaged when it arrived. Luckily, the product was fine. Customer support was responsive, but shipping could be improved
-                    </p>
-                </div>
-            </div>   
-
-            <div class="review_card">
-                <div class="card_top">
-                    <div class="profile">
-
-                        <div class="profile_image">
-                            <img src="image/gir_dp2.jpg">
-                        </div>
-
-                        <div class="name">
-                            <strong>John Deo</strong>
-
-                            <div class="like">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="comment">
-                    <p>
-                        Bought a ski jacket from here, and it kept me warm even in freezing temperatures. Great selection and fair prices. Highly recommend!
-                    </p>
-                </div>
-            </div>   
-
-            <div class="review_card">
-                <div class="card_top">
-                    <div class="profile">
-
-                        <div class="profile_image">
-                            <img src="image/man_dp3.jpg">
-                        </div>
-
-                        <div class="name">
-                            <strong>Charith Aruna</strong>
-
-                            <div class="like">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="comment">
-                    <p>
-                        This store never disappoints! I’ve been shopping here for years, and the gear is always reliable. My new ski boots fit perfectly, and they arrived just in time for my trip!
-                    </p>
-                </div>
-            </div>   
-
-        </div>
-
-    </div>
-
+                $count++;
+            }
+            echo '</div>'; 
+        } else {
+            echo '<p>No reviews found.</p>';
+        }
+        echo '</div>';
+    ?>
 
     <!--Services-->
 
@@ -389,9 +260,7 @@ Join us in embracing the season, pushing limits, and making memories in the moun
 
     </div>
 
-     <!--Login Form-->
-    
-     <div class="login_form">
+    <div align="center">
             <img src="image/snow.jpg">
     </div>
 

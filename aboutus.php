@@ -19,7 +19,7 @@
               <li><a href="./men.php">Products</a></li>
               <li><a href="#">About Us</a></li>
               <li><a href="index.php#Review">Review</a></li>
-              <li><a href="index.php#Services">Services</a></li>
+              <li><a href="./services.php">Services</a></li>
           </ul>
 
         <div class="icons">

@@ -19,7 +19,7 @@
           <li><a href="./men.php">Products</a></li>
           <li><a href="./aboutus.php">About</a></li>
           <li><a href="#Review">Review</a></li>
-          <li><a href="#Services">Services</a></li>
+          <li><a href="./services.php">Services</a></li>
         </ul>
     
         <div class="icons">
@@ -98,7 +98,7 @@
         <a href="mailto:wintersports@gmail.com" class="button email-btn">
             📧 Email Us
           </a>          
-          <button class="button call-btn" onclick="alert('Calling support at +1234567890')">📞 Call Us</button>
+          <button class="button call-btn" onclick="alert('Calling support at +91 77777 77777')">📞 Call Us</button>
       </div>
     </div>
   </div>
