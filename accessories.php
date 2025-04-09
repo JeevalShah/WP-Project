@@ -1,14 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: login.html");
-    exit;
-}
-
-include 'connection.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,15 +60,62 @@ include 'connection.php';
         </div>
         <h1>Accessories</h1>
 
+        <form method="POST" style="text-align: center; margin: 20px 0;">
+            <label for="sort">Sort by:</label>
+            <select name="sort" id="sort">
+                <option value="">Default</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="rating">Rating</option>
+            </select>
+
+            <!-- Price filter -->
+            <label style="margin-left: 20px;">Price:</label>
+            <input type="radio" name="price_range" value="0"> &lt; ₹500
+            <input type="radio" name="price_range" value="500"> ₹500 - ₹1000
+            <input type="radio" name="price_range" value="1000"> &gt; ₹1000
+
+            <button type="submit" class="btn" style="margin-left: 20px;">Apply</button>
+        </form>
+
         <div class="box">
         <?php
             include 'connection.php';
 
             $category = $_GET['category'] ?? 'acc';
+            $price_range = $_POST['price_range'] ?? '';
+            $sort = $_POST['sort'] ?? '';
 
             $sql = "SELECT * FROM products WHERE category = ?";
+            $params = [$category];
+            $types = "s";
+
+            if ($price_range === '0') {
+                $sql .= " AND price < ?";
+                $params[] = 500;
+                $types .= "i";
+            } elseif ($price_range === '500') {
+                $sql .= " AND price BETWEEN ? AND ?";
+                $params[] = 500;
+                $params[] = 1000;
+                $types .= "ii";
+            } elseif ($price_range === '1000') {
+                $sql .= " AND price > ?";
+                $params[] = 1000;
+                $types .= "i";
+            }
+
+            if ($sort === 'price_asc') {
+                $sql .= " ORDER BY price ASC";
+            } elseif ($sort === 'price_desc') {
+                $sql .= " ORDER BY price DESC";
+            } elseif ($sort === 'rating') {
+                $sql .= " ORDER BY rating DESC";
+            }
+
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $category);
+            $stmt->bind_param($types, ...$params);
+
             $stmt->execute();
             $result = $stmt->get_result();
 
