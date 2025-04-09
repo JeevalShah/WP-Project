@@ -6,6 +6,7 @@
   <title>About Winter Sport</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style/aboutus.css" type="text/css">
+  <link rel="icon" href="./image/logo.png" type="image/png">
 </head>
 <body>
     <nav>
@@ -85,14 +86,14 @@
         <p>Founder & CEO</p>
       </div>
       <div class="team-member">
-        <img src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Jamie Chen">
+        <img src="./image/sachi.jpg" alt="Sachi Mane">
         <h3>Sachi Mane</h3>
         <p>Head of Product</p>
       </div>
       <div class="team-member">
-        <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Sam Taylor">
+        <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Chahak Daga">
         <h3>Chahak Daga</h3>
-        <p>Customer Experience</p>
+        <p>Head of Customer Relations</p>
       </div>
     </div>
   </div>

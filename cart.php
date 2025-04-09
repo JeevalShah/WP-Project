@@ -61,6 +61,7 @@
             text-decoration: none;
         }
     </style>
+    <link rel="icon" href="./image/logo.png" type="image/png">
 </head>
 <body>
     <div class="min-h-screen flex flex-col">
