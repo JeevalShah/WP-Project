@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Services | Winter Sport</title>
   <link rel="shortcut icon" href="image/logo.png">
-  <link rel="stylesheet" href="style1.css">
-  <link rel="stylesheet" href="services.css">
+  <link rel="stylesheet" href="./style/style1.css">
+  <link rel="stylesheet" href="./style/services.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
   <link rel="icon" href="./image/logo.png" type="image/png">
 </head>
@@ -24,7 +24,7 @@
       <li><a href="index.html#About">About</a></li>
       <li><a href="index.html#Review">Review</a></li>
       <li><a href="#">Services</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="./contactus.php">Contact</a></li>
     </ul>
     <div class="icons">
       <i class="fa-solid fa-heart"></i>

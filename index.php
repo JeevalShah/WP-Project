@@ -22,6 +22,7 @@
                 <li><a href="./aboutus.php">About Us</a></li>
                 <li><a href="#Review">Review</a></li>
                 <li><a href="./services.php">Services</a></li>
+                <li><a href="./contactus.php">Contact</a></li>
             </ul>
 
             <div class="icons">
