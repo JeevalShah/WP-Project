@@ -76,7 +76,6 @@ include 'connection.php';
 
     <div class="products" id="Products">
         <h1>New Arrivals</h1>
-
         <div class="box">
             <?php
                 include 'connection.php';

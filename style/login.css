@@ -204,6 +204,7 @@ nav {
 
 .mt-1 {
     margin-top: 0.25rem;
+    max-width: 370px;
 }
 
 .appearance-none {
@@ -341,6 +342,7 @@ nav {
 
 .mt-6 {
     margin-top: 1.5rem;
+    overflow: hidden;
 }
 
 .grid {
