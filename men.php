@@ -101,7 +101,9 @@
                 <a href="cart.php" style="text-decoration: none; color: black;">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
-                <i class="fa-solid fa-user"></i>
+                <a href="./profile.php" style="text-decoration: none; color: black;">
+                    <i class="fa-solid fa-user"></i>
+                </a>
             </div>
         </nav>
 

@@ -52,7 +52,9 @@
             <a href="cart.php" style="text-decoration: none; color: black;">
                 <i class="fa-solid fa-cart-shopping"></i>
             </a>
-            <i class="fa-solid fa-user"></i>
+            <a href="./profile.php" style="text-decoration: none; color: black;">
+                <i class="fa-solid fa-user"></i>
+            </a>
         </div>
     
     </nav>
@@ -60,7 +62,7 @@
 
   <br>
   <h1>Customer Feedback</h1>
-  <button class="btn-back" onclick="window.location.href='index.html'">Back to Home</button>
+  <button class="btn-back" onclick="window.location.href='index.php'">Back to Home</button>
 
   <div class="feedback-section">
     <h2 class="heading blue">Submit Your Feedback</h2>

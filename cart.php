@@ -78,20 +78,18 @@
                     <a href="./index.php" class="text-gray-800 hover:text-mint-green transition">Home</a>
                     <a href="./men.php" class="text-gray-800 hover:text-mint-green transition">Products</a>
                     <a href="./aboutus.php" class="text-gray-800 hover:text-mint-green transition">About Us</a>
-                    <a href="/feedback.php" class="text-gray-800 hover:text-mint-green transition">Review</a>
+                    <a href="./feedback.php" class="text-gray-800 hover:text-mint-green transition">Review</a>
                     <a href="./services.php" class="text-gray-800 hover:text-mint-green transition">Services</a>
                     <a href="./contactus.php" class="text-gray-800 hover:text-mint-green transition">Contact</a>
                 </nav>
                 
                 <div class="flex items-center space-x-4">
-                    <a href="/wishlist" class="text-gray-800 hover:text-mint-green">
-                        <i class="fas fa-heart"></i>
-                    </a>
-                    <a href="/cart" class="text-gray-800 hover:text-mint-green">
+                    <i class="fas fa-heart"></i>
+                    <a href="#" class="text-gray-800 hover:text-mint-green">
                         <i class="fas fa-shopping-cart"></i>
                     </a>
-                    <a href="/login" class="text-gray-800 hover:text-mint-green">
-                        <i class="fas fa-user"></i>
+                    <a href="./profile.php" style="text-decoration: none; color: black;">
+                        <i class="fa-solid fa-user"></i>
                     </a>
                 </div>
             </div>
@@ -176,7 +174,7 @@
                                     <div class="mt-6">
                                         <h3 class="text-sm font-medium mb-2">Apply Promo Code</h3>
                                         <div class="flex">
-                                            <input type="text" name="promo_code" placeholder="Enter your code" class="px-4 py-2 border border-gray-300 rounded-l-lg w-full">
+                                            <input type="text" name="promo_code" id="promo_code" placeholder="Enter your code" class="px-4 py-2 border border-gray-300 rounded-l-lg w-full" value="<?= htmlspecialchars($promoCode)?>">
                                             <button type="submit" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-r-lg hover:bg-gray-300">Apply</button>
                                         </div>
                                     </div>

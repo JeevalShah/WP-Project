@@ -30,7 +30,7 @@
         $stmt->execute();
         $stmt->close();
 
-        $promo = $_POST['promo_code']; 
+        $promo = isset($_POST['promo_code']) ? strtoupper(trim($_POST['promo_code'])) : '';
         $total = (float)$_POST['total'];
 
         $orderItemsStmt = $conn->prepare("INSERT INTO orderitems (order_id, user_id, total, promo) VALUES (?, ?, ?, ?)");

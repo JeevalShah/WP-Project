@@ -40,6 +40,11 @@
     <link rel="stylesheet" href="./style/profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="./image/logo.png" type="image/png">
+    <style>
+        a {
+            text-decoration:none;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -58,9 +63,13 @@
         </ul>
     
         <div class="icons">
-          <i class="fa-solid fa-heart"></i>
-          <i class="fa-solid fa-cart-shopping"></i>
-          <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-heart"></i>
+            <a href="./cart.php" class="text-gray-800 hover:text-mint-green">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="./profile.php" style="text-decoration: none; color: black;">
+                <i class="fa-solid fa-user"></i>
+            </a>
         </div>
       </nav>
             

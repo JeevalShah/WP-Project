@@ -25,8 +25,12 @@
     
         <div class="icons">
           <i class="fa-solid fa-heart"></i>
-          <i class="fa-solid fa-cart-shopping"></i>
-          <i class="fa-solid fa-user"></i>
+          <a href="./cart.php" class="text-gray-800 hover:text-mint-green">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+          <a href="./profile.php" style="text-decoration: none; color: black;">
+            <i class="fa-solid fa-user"></i>
+          </a>
         </div>
       </nav>
 
