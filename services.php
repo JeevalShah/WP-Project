@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="./style/services.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
   <link rel="icon" href="./image/logo.png" type="image/png">
+  <style>
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
 </head>
 <body>
 
