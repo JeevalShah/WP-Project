@@ -262,9 +262,11 @@ Join us in embracing the season, pushing limits, and making memories in the moun
 
     </div>
 
-    <div align="center">
-            <img src="image/snow.jpg">
-    </div>
+    <br>
+        <div align="center">
+                <img src="image/snow.jpg" alt="Snow Image">
+        </div>
+    <br>
 
 
 

@@ -23,7 +23,6 @@
             background-color: #555;
         }
 
-        /* Horizontal Filter & Sort Form */
         form[method="POST"] {
         background-color: #f3f1f1;
         padding: 20px 30px;
@@ -39,14 +38,12 @@
         gap: 15px;
         }
 
-        /* Labels */
         form[method="POST"] label {
         font-weight: bold;
         color: #1c0080;
         margin-right: 5px;
         }
 
-        /* Dropdown */
         form[method="POST"] select {
         padding: 8px 10px;
         border: 1px solid #ccc;
@@ -56,14 +53,12 @@
         cursor: pointer;
         }
 
-        /* Radio buttons and their labels */
         form[method="POST"] input[type="radio"] {
         margin-left: 10px;
         accent-color: #94b9ff;
         cursor: pointer;
         }
 
-        /* Submit Button */
         form[method="POST"] .btn {
         padding: 8px 16px;
         background: linear-gradient(to right, #cdffd8, #94b9ff);
