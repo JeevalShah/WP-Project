@@ -20,6 +20,7 @@
     $conn->close();
   }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,28 +29,34 @@
   <title>Customer Feedback</title>
   <link rel="stylesheet" href="./style/style1.css" type="text/css">
   <link rel="stylesheet" href="./style/feedback.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" href="./image/logo.png" type="image/png">
 </head>
 <body>
 
   <nav>
-    <div class="logo">
-      <h1>Winter<span> Sport</span></h1>
-    </div>
+      <div class="logo">
+          <h1>Winter<span> Sport</span></h1>
+      </div>
+      <ul>
+          <li><a href="./index.php#Home">Home</a></li>
+          <li><a href="./men.php">Products</a></li>
+          <li><a href="./aboutus.php">About</a></li>
+          <li><a href="./feedback.php">Review</a></li>
+          <li><a href="./services.php">Services</a></li>
+          <li><a href="./contactus.php">Contact</a></li>
+      </ul>
 
-    <ul>
-      <li><a href="./index.php">Home</a></li>
-      <li><a href="./men.php">Products</a></li>
-      <li><a href="./aboutus.php">About Us</a></li>
-      <li><a href="#">Review</a></li>
-      <li><a href="./services.php">Services</a></li>
-      <li><a href="./contactus.php">Contact</a></li>
-  </ul>
-
-    <div class="icons">
-      <i class="fa-solid fa-heart"></i>
-      <i class="fa-solid fa-cart-shopping"></i>
-      <i class="fa-solid fa-user"></i>
+      <div class="flex items-center space-x-4">
+        <a href="#" class="text-gray-800 hover:text-mint-green">
+            <i class="fas fa-heart"></i>
+        </a>
+        <a href="./cart.php" class="text-gray-800 hover:text-mint-green">
+            <i class="fas fa-shopping-cart"></i>
+        </a>
+        <a href="./login.php" class="text-gray-800 hover:text-mint-green">
+            <i class="fas fa-user"></i>
+        </a>
     </div>
   </nav>
 

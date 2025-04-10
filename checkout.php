@@ -2,11 +2,9 @@
     session_start();
     require "connection.php";
 
-    // Get total amount
     $total = $_POST['total'] ?? 0;
     $total = number_format((float)$total, 2);
 
-    // Get the user ID from session
     $userId = $_SESSION['user_id'] ?? null;
 
     if ($userId) {
@@ -31,6 +29,14 @@
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $stmt->close();
+
+        $promo = $_POST['promo_code']; 
+        $total = (float)$_POST['total'];
+
+        $orderItemsStmt = $conn->prepare("INSERT INTO orderitems (order_id, user_id, total, promo) VALUES (?, ?, ?, ?)");
+        $orderItemsStmt->bind_param("iiss", $newOrderId, $userId, $total, $promo);
+        $orderItemsStmt->execute();
+        $orderItemsStmt->close();
 
     
         unset($_SESSION['cart']);
