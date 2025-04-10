@@ -57,20 +57,7 @@
                                     <p class="text-sm font-medium text-gray-500">Email</p>
                                     <p class="text-gray-700">Customer1@example.com</p>
                                 </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-500">Phone</p>
-                                    <p class="text-gray-700">+1 (555) 123-4567</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-500">Address</p>
-                                    <p class="text-gray-700">123 alpha, Vile Parle, Mumbai</p>
-                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline w-full" id="editProfileBtn">
-                                Edit Profile
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -80,7 +67,6 @@
                     <div class="tabs">
                         <div class="tabs-list">
                             <div class="tabs-trigger active" data-tab="orders">Order History</div>
-                            <div class="tabs-trigger" data-tab="wishlist">Wishlist</div>
                             <div class="tabs-trigger" data-tab="settings">Settings</div>
                         </div>
 
@@ -183,14 +169,6 @@
                             </div>
                         </div>
 
-                        <!-- Wishlist Tab -->
-                        <div class="tabs-content" id="wishlist-tab">
-                            <div class="text-center py-8">
-                                <p class="text-gray-500 mb-4">Your wishlist is empty.</p>
-                                <a href="/products" class="btn btn-primary">Browse Products</a>
-                            </div>
-                        </div>
-
                         <!-- Settings Tab with Edit Form -->
                         <div class="tabs-content" id="settings-tab">
                             <div class="card">
@@ -212,62 +190,12 @@
                                                 <label for="email">Email</label>
                                                 <input type="email" id="email" value="Customer1@example.com">
                                             </div>
-                                            
-                                            <div class="form-group">
-                                                <label for="phone">Phone</label>
-                                                <input type="text" id="phone" value="+1 (555) 123-4567">
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label for="address">Address</label>
-                                                <input type="text" id="address" value="123 alpha, Vile Parle, Mumbai">
-                                            </div>
-                                        </div>
                                         
                                         <div class="mt-6">
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Edit Profile Form (Initially Hidden) -->
-                        <div class="card mt-6 hidden" id="editProfileForm">
-                            <div class="card-header">
-                                <h3 class="card-title">Edit Profile</h3>
-                            </div>
-                            <div class="card-content">
-                                <form id="profileForm">
-                                    <div class="space-y-4">
-                                        <div class="form-group">
-                                            <label for="edit-name">Full Name</label>
-                                            <input type="text" id="edit-name" value="Customer1">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="edit-email">Email</label>
-                                            <input type="email" id="edit-email" value="Customer1@example.com">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="edit-phone">Phone</label>
-                                            <input type="text" id="edit-phone" value="+1 (555) 123-4567">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="edit-address">Address</label>
-                                            <input type="text" id="edit-address" value="123 alpha, Vile Parle, Mumbai">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mt-6 flex space-x-2">
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                        <button type="button" class="btn btn-outline" id="cancelEditBtn">
-                                            Cancel
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -288,15 +216,15 @@
         const tabContents = document.querySelectorAll('.tabs-content');
         
         tabTriggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-        tabTriggers.forEach(t => t.classList.remove('active'));
-        tabContents.forEach(c => c.classList.remove('active'));
-        
-        trigger.classList.add('active');
-        const tabId = trigger.getAttribute('data-tab');
-        document.getElementById(`${tabId}-tab`).classList.add('active');
-    });
-});
+            trigger.addEventListener('click', () => {
+                tabTriggers.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                trigger.classList.add('active');
+                const tabId = trigger.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
 
         
         // Order details toggle
@@ -311,33 +239,11 @@
                 btn.textContent = details.classList.contains('hidden') ? 'View Details' : 'Hide Details';
             });
         });
-        
-        // Edit profile toggle
-        const editProfileBtn = document.getElementById('editProfileBtn');
-        const editProfileForm = document.getElementById('editProfileForm');
-        const cancelEditBtn = document.getElementById('cancelEditBtn');
-        
-        editProfileBtn.addEventListener('click', () => {
-            editProfileForm.classList.toggle('hidden');
-            editProfileBtn.textContent = editProfileForm.classList.contains('hidden') ? 'Edit Profile' : 'Cancel';
-        });
-        
-        cancelEditBtn.addEventListener('click', () => {
-            editProfileForm.classList.add('hidden');
-            editProfileBtn.textContent = 'Edit Profile';
-        });
-        
+
         // Form submissions
         document.getElementById('settingsForm').addEventListener('submit', (e) => {
             e.preventDefault();
             alert('Settings updated successfully!');
-        });
-        
-        document.getElementById('profileForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Profile updated successfully!');
-            editProfileForm.classList.add('hidden');
-            editProfileBtn.textContent = 'Edit Profile';
         });
         
         // Responsive navigation toggle for mobile

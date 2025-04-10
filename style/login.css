@@ -1,6 +1,6 @@
 :root {
-    --mint-green: #4DB6AC;
-    --sky-blue: #64B5F6;
+    --mint-green: #cdffd8;
+    --sky-blue: #94b9ff;
 }
 
 body {
@@ -293,11 +293,11 @@ nav {
 }
 
 .bg-mint-green {
-    background-color: var(--mint-green);
+    background-color: var(--sky-blue);
 }
 
 .hover\:bg-sky-blue:hover {
-    background-color: var(--sky-blue);
+    background-color: var(--mint-green);
 }
 
 .focus\:ring-2:focus {

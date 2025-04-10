@@ -92,7 +92,7 @@
         <p>Head of Product</p>
       </div>
       <div class="team-member">
-        <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Chahak Daga">
+        <img src="./image/chahak.jpg" alt="Chahak Daga">
         <h3>Chahak Daga</h3>
         <p>Head of Customer Relations</p>
       </div>

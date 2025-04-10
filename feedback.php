@@ -3,21 +3,15 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
-    $email = $_POST['email'];
     $rating = $_POST['rating'];
     $feedback = $_POST['feedback'];
 
     $stmt = $conn->prepare("INSERT INTO reviews (name, rating, comment) VALUES (?, ?, ?)");
     $stmt->bind_param("sis", $name, $rating, $feedback);
 
-    if ($stmt->execute()) {
-      echo "success";
-    } else {
-      echo "error";
-    }
-
     $stmt->close();
     $conn->close();
+    header("feedback.php");
   }
 ?>
 
@@ -27,39 +21,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Customer Feedback</title>
-  <link rel="stylesheet" href="./style/style1.css" type="text/css">
   <link rel="stylesheet" href="./style/feedback.css" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" href="./image/logo.png" type="image/png">
+  <style>
+        a {
+            text-decoration: none;
+        }
+  </style>
 </head>
 <body>
 
-  <nav>
-      <div class="logo">
-          <h1>Winter<span> Sport</span></h1>
-      </div>
-      <ul>
-          <li><a href="./index.php#Home">Home</a></li>
-          <li><a href="./men.php">Products</a></li>
-          <li><a href="./aboutus.php">About</a></li>
-          <li><a href="./feedback.php">Review</a></li>
-          <li><a href="./services.php">Services</a></li>
-          <li><a href="./contactus.php">Contact</a></li>
-      </ul>
+  <section>
+    <nav>
+        <div class="logo">
+            <h1>Winter<span> Sport</span></h1>
+        </div>
+    
+        <ul>
+            <li><a href="./index.php">Home</a></li>
+            <li><a href="men.php">Products</a></li>
+            <li><a href="./aboutus.php">About Us</a></li>
+            <li><a href="./feedback.php">Review</a></li>
+            <li><a href="./services.php">Services</a></li>
+            <li><a href="./contactus.php">Contact</a></li>
+        </ul>
 
-      <div class="flex items-center space-x-4">
-        <a href="#" class="text-gray-800 hover:text-mint-green">
-            <i class="fas fa-heart"></i>
-        </a>
-        <a href="./cart.php" class="text-gray-800 hover:text-mint-green">
-            <i class="fas fa-shopping-cart"></i>
-        </a>
-        <a href="./login.php" class="text-gray-800 hover:text-mint-green">
-            <i class="fas fa-user"></i>
-        </a>
-    </div>
-  </nav>
+        <div class="icons">
+            <i class="fa-solid fa-heart"></i>
+            <a href="cart.php" style="text-decoration: none; color: black;">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <i class="fa-solid fa-user"></i>
+        </div>
+    
+    </nav>
+  </section>
 
+  <br>
   <h1>Customer Feedback</h1>
   <button class="btn-back" onclick="window.location.href='index.html'">Back to Home</button>
 
@@ -97,7 +96,7 @@
 
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-          $stars = str_repeat("★", $row['rating']) . str_repeat("☆", 5 - $row['rating']);
+          $stars = str_repeat("★", $row['rating']) . str_repeat("☆", 5 - (int)$row['rating']);
           echo '<div class="review-card">';
           echo '<div><span class="stars">' . $stars . '</span></div>';
           echo '<h4>' . htmlspecialchars($row['name']) . '</h4>';
@@ -109,32 +108,8 @@
       }
 
       $conn->close();
-      header("feedback.php");
     ?>
   </div>
-
-
-  <script>
-    const stars = document.querySelectorAll('.star-rating .star');
-    const ratingInput = document.getElementById('ratingInput');
-    let selectedRating = 0;
-
-    stars.forEach((star, index) => {
-      star.addEventListener('mouseover', () => highlightStars(index + 1));
-      star.addEventListener('mouseout', () => highlightStars(selectedRating));
-      star.addEventListener('click', () => {
-        selectedRating = index + 1;
-        ratingInput.value = selectedRating;
-        highlightStars(selectedRating);
-      });
-    });
-
-    function highlightStars(rating) {
-      stars.forEach((star, index) => {
-        star.classList.toggle('selected', index < rating);
-      });
-    }
-  </script>
 
 </body>
 </html>

@@ -30,7 +30,10 @@
                 <a href="cart.php" style="text-decoration: none; color: black;">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
-                <i class="fa-solid fa-user"></i>
+                <a href="./profile.php" style="text-decoration: none; color: black;">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+
             </div>
         
         </nav>
@@ -175,7 +178,7 @@ Join us in embracing the season, pushing limits, and making memories in the moun
     <?php
         include "connection.php";
 
-        $sql = "SELECT * FROM reviews";
+        $sql = "SELECT * FROM reviews LIMIT 6";
         $result = $conn->query($sql);
 
         $count = 0;
