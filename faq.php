@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="./style/faq.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" href="./image/logo.png" type="image/png">
+  <style>
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
 </head>
 <body>
     <nav>
@@ -37,7 +43,7 @@
   <div class="container">
     <div class="header">
       <h1>Frequently Asked Questions</h1>
-      <a href="index.html">
+      <a href="index.php">
         <button class="back-btn">Back to Home</button>
       </a>      
     </div>

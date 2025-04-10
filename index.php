@@ -18,7 +18,7 @@
         
             <ul>
                 <li><a href="./index.php">Home</a></li>
-                <li><a href="men.php">Products</a></li>
+                <li><a href="./men.php">Products</a></li>
                 <li><a href="./aboutus.php">About Us</a></li>
                 <li><a href="./feedback.php">Review</a></li>
                 <li><a href="./services.php">Services</a></li>
@@ -67,7 +67,6 @@
     </section>
 
     <!--Products-->
-
     <div class="products" id="Products">
         <h1>New Arrivals</h1>
         <div class="box">
@@ -232,7 +231,6 @@ Join us in embracing the season, pushing limits, and making memories in the moun
     ?>
 
     <!--Services-->
-
     <div class="services" id="Servises">
         <h1>our<span>services</span></h1>
 

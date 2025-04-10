@@ -1,21 +1,21 @@
 <?php
-include 'connection.php';
+    include 'connection.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $conn->real_escape_string($_POST['name']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $message = $conn->real_escape_string($_POST['message']);
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $name = $conn->real_escape_string($_POST['name']);
+        $email = $conn->real_escape_string($_POST['email']);
+        $message = $conn->real_escape_string($_POST['message']);
 
-    $sql = "INSERT INTO message (name, email, message) VALUES ('$name', '$email', '$message')";
+        $sql = "INSERT INTO message (name, email, message) VALUES ('$name', '$email', '$message')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Message sent successfully!'); window.location.href='contactus.php';</script>";
-    } else {
-        echo "<script>alert('Error: " . $conn->error . "');</script>";
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>alert('Message sent successfully!'); window.location.href='contactus.php';</script>";
+        } else {
+            echo "<script>alert('Error: " . $conn->error . "');</script>";
+        }
+
+        $conn->close();
     }
-
-    $conn->close();
-}
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             return true;
         }
     </script>
+    <style>
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
 

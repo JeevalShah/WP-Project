@@ -125,7 +125,7 @@
                                                 <p class="card-description"><?= date('F d, Y', strtotime($order['date'])) ?></p>
                                             </div>
                                             <div>
-                                                <span class="badge badge-delivered">Delivered</span> <!-- You can update this later -->
+                                                <span class="badge badge-delivered">Delivered</span>
                                             </div>
                                         </div>
                                     </div>
@@ -169,7 +169,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input type="email" name="email" id="email" value="<?= htmlspecialchars($user['email']) ?>" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$">
+                                                <input type="email" name="email" id="email" value="<?= htmlspecialchars($user['email']) ?>" pattern="^\w+([.-]?\w+)*@\w+([.]?\w+)*(\.-\w{2,3})+$">
                                             </div>
                                             <div class="mt-6">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -179,7 +179,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -216,8 +215,6 @@
                 const orderId = btn.getAttribute('data-order');
                 const details = document.getElementById(`${orderId}-details`);
                 details.classList.toggle('hidden');
-                
-                // Toggle button text
                 btn.textContent = details.classList.contains('hidden') ? 'View Details' : 'Hide Details';
             });
         });

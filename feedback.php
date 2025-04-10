@@ -9,9 +9,11 @@
     $stmt = $conn->prepare("INSERT INTO reviews (name, rating, comment) VALUES (?, ?, ?)");
     $stmt->bind_param("sis", $name, $rating, $feedback);
 
+    $stmt->execute();
     $stmt->close();
     $conn->close();
-    header("feedback.php");
+    header("Location: feedback.php");
+    exit();
   }
 ?>
 
@@ -67,7 +69,7 @@
   <div class="feedback-section">
     <h2 class="heading blue">Submit Your Feedback</h2>
 
-    <form id="feedbackForm" method="POST" action=""
+    <form id="feedbackForm" method="POST" action="">
       <label>Name</label>
       <input type="text" name="name" placeholder="Your name" required />
 
@@ -112,6 +114,26 @@
       $conn->close();
     ?>
   </div>
+
+  <script>
+    const stars = document.querySelectorAll('#starRating .star');
+    const ratingInput = document.getElementById('ratingInput');
+
+    stars.forEach((star) => {
+        star.addEventListener('click', () => {
+            const value = star.getAttribute('data-value');
+            ratingInput.value = value;
+
+            // Remove 'selected' class from all stars
+            stars.forEach(s => s.classList.remove('selected'));
+
+            // Add 'selected' class up to the clicked star
+            for (let i = 0; i < value; i++) {
+                stars[i].classList.add('selected');
+            }
+        });
+    });
+  </script>
 
 </body>
 </html>

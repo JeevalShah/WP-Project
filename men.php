@@ -120,7 +120,6 @@
         </div>
         <h1>Men's collection</h1>
         <center>
-            <!-- Sort -->
             <form method="POST" style="text-align: center; margin: 20px 0;">
                 <label for="sort">Sort by:</label>
                 <select name="sort" id="sort">
@@ -130,7 +129,6 @@
                     <option value="rating">Rating</option>
                 </select>
 
-                <!-- Price filter -->
                 <label style="margin-left: 20px;">Price:</label>
                 <input type="radio" name="price_range" value="0"> &lt; ₹500
                 <input type="radio" name="price_range" value="500"> ₹500 - ₹1000
@@ -141,85 +139,85 @@
         </center>
 
         <div class="box">
-        <?php
-            include 'connection.php';
+            <?php
+                include 'connection.php';
 
-            $category = $_GET['category'] ?? 'men';
-            $price_range = $_POST['price_range'] ?? '';
-            $sort = $_POST['sort'] ?? '';
+                $category = $_GET['category'] ?? 'men';
+                $price_range = $_POST['price_range'] ?? '';
+                $sort = $_POST['sort'] ?? '';
 
-            $sql = "SELECT * FROM products WHERE category = ?";
-            $params = [$category];
-            $types = "s";
+                $sql = "SELECT * FROM products WHERE category = ?";
+                $params = [$category];
+                $types = "s";
 
-            if ($price_range === '0') {
-                $sql .= " AND price < ?";
-                $params[] = 500;
-                $types .= "i";
-            } elseif ($price_range === '500') {
-                $sql .= " AND price BETWEEN ? AND ?";
-                $params[] = 500;
-                $params[] = 1000;
-                $types .= "ii";
-            } elseif ($price_range === '1000') {
-                $sql .= " AND price > ?";
-                $params[] = 1000;
-                $types .= "i";
-            }
-
-            if ($sort === 'price_asc') {
-                $sql .= " ORDER BY price ASC";
-            } elseif ($sort === 'price_desc') {
-                $sql .= " ORDER BY price DESC";
-            } elseif ($sort === 'rating') {
-                $sql .= " ORDER BY rating DESC";
-            }
-
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param($types, ...$params);
-
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            function renderStars($rating) {
-                $fullStars = floor($rating);
-                $halfStar = ($rating - $fullStars) >= 0.5 ? 1 : 0;
-                $emptyStars = 5 - $fullStars - $halfStar;
-
-                $output = '<div class="products_star">';
-                for ($i = 0; $i < $fullStars; $i++) {
-                    $output .= '<i class="fa-solid fa-star"></i>';
+                if ($price_range === '0') {
+                    $sql .= " AND price < ?";
+                    $params[] = 500;
+                    $types .= "i";
+                } elseif ($price_range === '500') {
+                    $sql .= " AND price BETWEEN ? AND ?";
+                    $params[] = 500;
+                    $params[] = 1000;
+                    $types .= "ii";
+                } elseif ($price_range === '1000') {
+                    $sql .= " AND price > ?";
+                    $params[] = 1000;
+                    $types .= "i";
                 }
-                if ($halfStar) {
-                    $output .= '<i class="fa-solid fa-star-half-stroke"></i>';
-                }
-                for ($i = 0; $i < $emptyStars; $i++) {
-                    $output .= '<i class="fa-regular fa-star"></i>';
-                }
-                $output .= '</div>';
 
-                return $output;
-            }
+                if ($sort === 'price_asc') {
+                    $sql .= " ORDER BY price ASC";
+                } elseif ($sort === 'price_desc') {
+                    $sql .= " ORDER BY price DESC";
+                } elseif ($sort === 'rating') {
+                    $sql .= " ORDER BY rating DESC";
+                }
 
-            while ($row = $result->fetch_assoc()) {
-                echo '
-                <div class="card">
-                    <div class="small_card">
-                        <i class="fa-solid fa-heart"></i>
-                        <i class="fa-solid fa-share"></i>
-                    </div>
-                    <div class="image">
-                        <img src="' . htmlspecialchars($row["image_url"]) . '" alt="' . htmlspecialchars($row["name"]) . '">
-                    </div>
-                    <div class="products_text">
-                        <h2>' . htmlspecialchars($row["name"]) . '</h2>
-                        <p>' . htmlspecialchars($row["description"]) . '</p>
-                        <h3>₹' . htmlspecialchars($row["price"]) . '</h3>
-                        ' . renderStars($row["rating"]) . '
-                        <a href="add-to-cart.php?id=' . $row["id"] . '" class="btn">Add To Cart</a>
-                    </div>
-                </div>';
-            }
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param($types, ...$params);
+
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                function renderStars($rating) {
+                    $fullStars = floor($rating);
+                    $halfStar = ($rating - $fullStars) >= 0.5 ? 1 : 0;
+                    $emptyStars = 5 - $fullStars - $halfStar;
+
+                    $output = '<div class="products_star">';
+                    for ($i = 0; $i < $fullStars; $i++) {
+                        $output .= '<i class="fa-solid fa-star"></i>';
+                    }
+                    if ($halfStar) {
+                        $output .= '<i class="fa-solid fa-star-half-stroke"></i>';
+                    }
+                    for ($i = 0; $i < $emptyStars; $i++) {
+                        $output .= '<i class="fa-regular fa-star"></i>';
+                    }
+                    $output .= '</div>';
+
+                    return $output;
+                }
+
+                while ($row = $result->fetch_assoc()) {
+                    echo '
+                    <div class="card">
+                        <div class="small_card">
+                            <i class="fa-solid fa-heart"></i>
+                            <i class="fa-solid fa-share"></i>
+                        </div>
+                        <div class="image">
+                            <img src="' . htmlspecialchars($row["image_url"]) . '" alt="' . htmlspecialchars($row["name"]) . '">
+                        </div>
+                        <div class="products_text">
+                            <h2>' . htmlspecialchars($row["name"]) . '</h2>
+                            <p>' . htmlspecialchars($row["description"]) . '</p>
+                            <h3>₹' . htmlspecialchars($row["price"]) . '</h3>
+                            ' . renderStars($row["rating"]) . '
+                            <a href="add-to-cart.php?id=' . $row["id"] . '" class="btn">Add To Cart</a>
+                        </div>
+                    </div>';
+                }
             ?>
         </div>
     </div>
