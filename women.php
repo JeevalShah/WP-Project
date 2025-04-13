@@ -104,9 +104,7 @@
     </section>
 
 
-    <!-- Products Section -->
     <div class="products" id="Products">
-        <!-- Category Buttons -->
         <div class="category-buttons" style="text-align:center; margin: 20px;">
             <a href="men.php" class="btn">Men</a>
             <a href="women.php" class="btn">Women</a>

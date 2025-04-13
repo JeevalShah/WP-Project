@@ -14,11 +14,11 @@
         $cartItems = $stmt->get_result();
         $stmt->close();
 
-        $result = $conn->query("SELECT MAX(order_id) AS max_order_id FROM orders");
+        $result = $conn->query("SELECT MAX(order_id) AS max_order_id FROM orderitems");
         $row = $result->fetch_assoc();
         $newOrderId = ($row['max_order_id'] ?? 0) + 1;
 
-        $insertStmt = $conn->prepare("INSERT INTO orders (order_id, user_id, product_id, quantity) VALUES (?, ?, ?, ?)");
+        $insertStmt = $conn->prepare("INSERT INTO orderitems (order_id, user_id, product_id, quantity) VALUES (?, ?, ?, ?)");
         foreach ($cartItems as $item) {
             $insertStmt->bind_param("iiii", $newOrderId, $userId, $item['product_id'], $item['quantity']);
             $insertStmt->execute();
@@ -33,7 +33,7 @@
         $promo = isset($_POST['promo_code']) ? strtoupper(trim($_POST['promo_code'])) : '';
         $total = (float)$_POST['total'];
 
-        $orderItemsStmt = $conn->prepare("INSERT INTO orderitems (order_id, user_id, total, promo) VALUES (?, ?, ?, ?)");
+        $orderItemsStmt = $conn->prepare("INSERT INTO orders (order_id, user_id, total, promo) VALUES (?, ?, ?, ?)");
         $orderItemsStmt->bind_param("iiss", $newOrderId, $userId, $total, $promo);
         $orderItemsStmt->execute();
         $orderItemsStmt->close();

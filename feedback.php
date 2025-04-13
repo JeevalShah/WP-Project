@@ -124,10 +124,8 @@
             const value = star.getAttribute('data-value');
             ratingInput.value = value;
 
-            // Remove 'selected' class from all stars
             stars.forEach(s => s.classList.remove('selected'));
 
-            // Add 'selected' class up to the clicked star
             for (let i = 0; i < value; i++) {
                 stars[i].classList.add('selected');
             }

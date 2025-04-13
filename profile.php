@@ -9,14 +9,14 @@
     $user_stmt->execute();
     $user = $user_stmt->get_result()->fetch_assoc();
 
-    $order_stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC");
+    $order_stmt = $conn->prepare("SELECT * FROM orderitems WHERE user_id = ? ORDER BY order_date DESC");
     $order_stmt->bind_param("i", $user_id);
     $order_stmt->execute();
     $orders = $order_stmt->get_result();
 
     function getOrderItems($conn, $order_id) {
         $sql = "SELECT p.name, o.quantity 
-                FROM orders o
+                FROM orderitems o
                 JOIN products p ON o.product_id = p.id 
                 WHERE o.order_id = ?";
         $stmt = $conn->prepare($sql);
@@ -25,7 +25,7 @@
         return $stmt->get_result();
     }
     
-    $order_stmt = $conn->prepare("SELECT * FROM orderitems WHERE user_id = ? ORDER BY date DESC");
+    $order_stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY date DESC");
     $order_stmt->bind_param("i", $user_id);
     $order_stmt->execute();
     $orders = $order_stmt->get_result();
